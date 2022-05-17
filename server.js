@@ -107,31 +107,31 @@ app.get("/signupsuccess", (req, res) => {
       var data;
       response.on("data", (chunk) => {
         // JSON is divided into chunks of data so we check for the chunk of data and append to the previous data
-        
+
         if (!data) data = chunk;
         else data += chunk;
       });
       // when data recieving is finished we parse the complete JSON data into an const and call memInfo function with the parsed data as its argument
       response.on("end", () => {
         const info = JSON.parse(data);
-        console.log(info.total_items)
+        console.log(info.total_items); //log the total members in an audience list
         // memInfo(info);
       });
     }
   );
   //memInfo logs the members information on a particular list/audience
-//   function memInfo(data) {
-//     console.log("This is the requested members data \n");
-//     console.log(
-//       data.members.map((data) => {
-//         return {
-//           email: data.email_address,
-//           name: data.full_name,
-//           status: data.status,
-//         };
-//       })
-//     );
-//   }
+  //   function memInfo(data) {
+  //     console.log("This is the requested members data \n");
+  //     console.log(
+  //       data.members.map((data) => {
+  //         return {
+  //           email: data.email_address,
+  //           name: data.full_name,
+  //           status: data.status,
+  //         };
+  //       })
+  //     );
+  //   }
 });
 
 app.get("/failure", (req, res) => {
@@ -139,5 +139,5 @@ app.get("/failure", (req, res) => {
 });
 
 app.listen(Port || 3000, () => {
-  console.log("server started at port " + (Port ? Port: 3000));
+  console.log("server started at port " + (Port ? Port : 3000));
 });
